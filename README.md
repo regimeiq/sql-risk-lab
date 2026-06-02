@@ -12,7 +12,7 @@ The `assets` table is intentionally generic. It can stand in for a shipped devic
 - Real-data Olist companion case study for marketplace integrity and operational triage.
 - 15 reusable synthetic-lab SQL queries.
 - 8 Olist case-study output files.
-- Olist outputs cover `99,441` orders, `3,095` sellers, `8,349` medium-plus queued orders, and `280` medium/high-priority sellers.
+- Olist outputs cover `99,441` orders, `3,095` sellers, `8,349` medium-plus queued orders, `14` high-priority sellers, and `266` medium-priority sellers.
 - Review queues use transparent flags and priority scores, not black-box conclusions.
 
 ## Scope
