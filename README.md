@@ -1,16 +1,16 @@
 # SQL Risk Lab
 
-SQL Risk Lab is a public-safe synthetic data project for practicing practical risk analysis in PostgreSQL. It models a generic hardware-enabled platform with account, order, activation, transfer, support, abuse-report, chargeback, and fake-watchlist data.
+SQL Risk Lab is a public-safe PostgreSQL project for investigation-style risk analysis. It uses synthetic platform-risk data and a public Olist marketplace companion case study to demonstrate SQL queries, review queues, explainable scoring, and interpretation guardrails.
 
-The project is written as an analyst workflow: define the data model, generate controlled synthetic data, run SQL investigations, and produce a review queue with explainable risk flags.
+The workflow is deliberately analyst-shaped: model entities, generate controlled data, run investigation queries, materialize review queues, and document what the signals can and cannot support.
 
-The `assets` table is intentionally generic. It can stand in for a shipped device, provisioned hardware unit, marketplace-controlled item, or other trackable product without mapping to a real company or product line.
+The synthetic lab models a generic hardware-enabled platform with account, order, activation, transfer, support, abuse-report, chargeback, shared-identifier, and fake-watchlist data. The `assets` table is intentionally generic, so it can stand in for a shipped device, provisioned hardware unit, marketplace-controlled item, or other trackable product without mapping to a real company or product line.
 
 Portfolio page: https://wksprojects.com/sql-risk-lab/
 
 ## Project Snapshot
 
-- Synthetic PostgreSQL lab for explicit fraud, abuse, diversion, chargeback, shared-identifier, and fake-watchlist scenarios.
+- Synthetic PostgreSQL lab for explicit review scenarios: fraud, abuse, diversion, chargeback, shared identifiers, and fake watchlists.
 - Real-data Olist companion case study for marketplace integrity and operational triage.
 - 15 reusable synthetic-lab SQL queries.
 - 8 Olist case-study output files.
