@@ -17,6 +17,15 @@ Portfolio page: https://wksprojects.com/sql-risk-lab/
 - Olist outputs cover `99,441` orders, `3,095` sellers, `8,349` medium-plus queued orders, `14` high-priority sellers, and `266` medium-priority sellers.
 - Review queues use transparent flags and priority scores, not black-box conclusions.
 
+## Start Here
+
+- [Outputs Summary](outputs/summary.md)
+- [Representative Query Snippets](docs/query_snippets.md)
+- [Case Walkthroughs](docs/case_walkthroughs.md)
+- [Review Queue SQL](sql/30_review_queue.sql)
+- [Olist Case Study Summary](case_studies/olist_marketplace_integrity/results/case_study_summary.md)
+- [Assumptions And Limitations](docs/assumptions_limitations.md)
+
 ## Scope
 
 This lab focuses on SQL patterns used in investigations and trust and safety work:
