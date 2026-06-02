@@ -1,0 +1,21 @@
+shipping_node_id,node_name,node_country_code,node_type,active
+SN-001,Northport Union Fulfillment Center,C01,fulfillment_center,True
+SN-002,Northport Union Marketplace Node,C01,marketplace_node,True
+SN-003,Greenhaven Fulfillment Center,C02,fulfillment_center,True
+SN-004,Greenhaven Marketplace Node,C02,marketplace_node,True
+SN-005,Lydora Fulfillment Center,C03,fulfillment_center,True
+SN-006,Lydora Marketplace Node,C03,marketplace_node,True
+SN-007,East Ardent Fulfillment Center,C04,fulfillment_center,True
+SN-008,East Ardent Marketplace Node,C04,marketplace_node,True
+SN-009,Vespera Fulfillment Center,C05,fulfillment_center,True
+SN-010,Vespera Marketplace Node,C05,marketplace_node,True
+SN-011,Caldera Freeport Fulfillment Center,C06,fulfillment_center,True
+SN-012,Caldera Freeport Marketplace Node,C06,marketplace_node,True
+SN-013,Orison Belt Fulfillment Center,C07,fulfillment_center,True
+SN-014,Orison Belt Marketplace Node,C07,marketplace_node,True
+SN-015,Kestrel Coast Fulfillment Center,C08,fulfillment_center,True
+SN-016,Kestrel Coast Marketplace Node,C08,marketplace_node,True
+SN-017,Red Mesa Directorate Fulfillment Center,C09,fulfillment_center,True
+SN-018,Red Mesa Directorate Marketplace Node,C09,marketplace_node,True
+SN-019,Iron Vale Compact Fulfillment Center,C10,fulfillment_center,True
+SN-020,Iron Vale Compact Marketplace Node,C10,marketplace_node,True

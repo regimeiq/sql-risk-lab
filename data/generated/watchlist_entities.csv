@@ -1,0 +1,11 @@
+watchlist_id,entity_type,entity_value,entity_label,risk_tier,reason_code,active_from,active_to,source_note
+WLT-000001,country_code,C09,Red Mesa Directorate,5,fake_restricted_country,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000002,country_code,C10,Iron Vale Compact,5,fake_restricted_country,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000003,reseller_id,RSL-004,Synthetic Reseller 004,5,fake_reseller_review,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000004,reseller_id,RSL-011,Synthetic Reseller 011,4,fake_reseller_review,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000005,email_domain,relaydrop.test,Relaydrop Test Domain,4,fake_disposable_domain,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000006,email_domain,shadowmail.test,Shadowmail Test Domain,4,fake_disposable_domain,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000007,payment_fingerprint,pay_60b92a1ac155,Shared Payment Alpha,4,fake_shared_payment_cluster,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000008,device_fingerprint,dev_e545545833e3,Shared Device Beta,4,fake_shared_device_cluster,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000009,shipping_address_fingerprint,addr_9a6f846daeb6,Shared Shipping Gamma,4,fake_shared_shipping_cluster,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab
+WLT-000010,phone_fingerprint,phn_834454c5b5cc,Abuse Cluster Phone,4,fake_shared_phone_cluster,2025-01-01,,Synthetic watchlist entry for public-safe SQL lab

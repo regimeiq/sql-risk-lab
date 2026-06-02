@@ -1,0 +1,14 @@
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+.env
+dist/
+build/
+
+# Local-only public dataset downloads and databases.
+case_studies/*/data/raw/*.csv
+case_studies/*/data/*.sqlite
+case_studies/*/data/*.db
+case_studies/*/data/*.zip
+

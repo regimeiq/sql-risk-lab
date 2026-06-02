@@ -1,0 +1,11 @@
+country_code,country_name,region,risk_tier,is_restricted,notes
+C01,Northport Union,Aster,1,False,Low-risk synthetic market
+C02,Greenhaven,Aster,1,False,Low-risk synthetic market
+C03,Lydora,Boreal,2,False,Standard synthetic market
+C04,East Ardent,Boreal,2,False,Standard synthetic market
+C05,Vespera,Calix,3,False,Elevated-risk synthetic market
+C06,Caldera Freeport,Calix,3,False,Elevated-risk synthetic transshipment market
+C07,Orison Belt,Damar,4,False,High-risk synthetic geography
+C08,Kestrel Coast,Damar,4,False,High-risk synthetic geography
+C09,Red Mesa Directorate,Echelon,5,True,Fake restricted geography for watchlist testing
+C10,Iron Vale Compact,Echelon,5,True,Fake restricted geography for watchlist testing

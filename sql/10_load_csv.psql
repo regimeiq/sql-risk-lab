@@ -1,0 +1,35 @@
+\set ON_ERROR_STOP on
+
+BEGIN;
+
+TRUNCATE TABLE
+    chargebacks,
+    abuse_reports,
+    support_tickets,
+    asset_transfers,
+    activations,
+    order_items,
+    assets,
+    orders,
+    accounts,
+    reseller_profiles,
+    shipping_nodes,
+    watchlist_entities,
+    countries
+CASCADE;
+
+\copy countries(country_code, country_name, region, risk_tier, is_restricted, notes) FROM 'data/generated/countries.csv' WITH (FORMAT csv, HEADER true)
+\copy watchlist_entities(watchlist_id, entity_type, entity_value, entity_label, risk_tier, reason_code, active_from, active_to, source_note) FROM 'data/generated/watchlist_entities.csv' WITH (FORMAT csv, HEADER true)
+\copy shipping_nodes(shipping_node_id, node_name, node_country_code, node_type, active) FROM 'data/generated/shipping_nodes.csv' WITH (FORMAT csv, HEADER true)
+\copy reseller_profiles(reseller_id, reseller_name, registered_country_code, reseller_tier, status, created_at) FROM 'data/generated/reseller_profiles.csv' WITH (FORMAT csv, HEADER true)
+\copy accounts(account_id, created_at, account_type, signup_country_code, email_fingerprint, email_domain, phone_fingerprint, payment_fingerprint, device_fingerprint, shipping_address_fingerprint, support_language, reseller_id, acquisition_channel, status, synthetic_segment) FROM 'data/generated/accounts.csv' WITH (FORMAT csv, HEADER true)
+\copy orders(order_id, account_id, order_ts, order_channel, shipping_country_code, shipping_node_id, shipping_address_fingerprint, payment_fingerprint, device_fingerprint, order_value_usd, asset_count, order_status, synthetic_scenario) FROM 'data/generated/orders.csv' WITH (FORMAT csv, HEADER true)
+\copy assets(asset_id, serial_number, model, manufactured_at, first_order_id, current_account_id, current_status, synthetic_scenario) FROM 'data/generated/assets.csv' WITH (FORMAT csv, HEADER true)
+\copy order_items(order_item_id, order_id, asset_id, unit_price_usd) FROM 'data/generated/order_items.csv' WITH (FORMAT csv, HEADER true)
+\copy activations(activation_id, asset_id, account_id, activation_ts, activation_country_code, activation_region, ip_fingerprint, device_fingerprint) FROM 'data/generated/activations.csv' WITH (FORMAT csv, HEADER true)
+\copy asset_transfers(transfer_id, asset_id, from_account_id, to_account_id, transfer_ts, transfer_reason, initiated_by, transfer_country_code) FROM 'data/generated/asset_transfers.csv' WITH (FORMAT csv, HEADER true)
+\copy support_tickets(ticket_id, account_id, asset_id, opened_at, support_language, reason_code, country_code, message_fingerprint) FROM 'data/generated/support_tickets.csv' WITH (FORMAT csv, HEADER true)
+\copy abuse_reports(report_id, account_id, asset_id, report_ts, report_type, reporter_type, country_code, severity, narrative_fingerprint) FROM 'data/generated/abuse_reports.csv' WITH (FORMAT csv, HEADER true)
+\copy chargebacks(chargeback_id, order_id, account_id, chargeback_ts, reason_code, amount_usd, dispute_status) FROM 'data/generated/chargebacks.csv' WITH (FORMAT csv, HEADER true)
+
+COMMIT;

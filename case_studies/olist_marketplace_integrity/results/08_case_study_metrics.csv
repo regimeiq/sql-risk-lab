@@ -1,0 +1,13 @@
+metric,value
+orders_total,99441
+queued_orders_medium_plus,8349
+queued_orders_critical,18
+queued_orders_high,2985
+queued_orders_medium,5346
+queued_orders_low_review,7905
+queued_orders_canceled_or_unavailable,1234
+queued_orders_very_late_delivery,2730
+queued_orders_high_installments,1133
+sellers_total,3095
+sellers_high_priority,14
+sellers_medium_priority,266
