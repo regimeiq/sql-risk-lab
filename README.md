@@ -6,6 +6,8 @@ The project is written as an analyst workflow: define the data model, generate c
 
 The `assets` table is intentionally generic. It can stand in for a shipped device, provisioned hardware unit, marketplace-controlled item, or other trackable product without mapping to a real company or product line.
 
+Portfolio page: https://wksprojects.com/sql-risk-lab/
+
 ## Project Snapshot
 
 - Synthetic PostgreSQL lab for explicit fraud, abuse, diversion, chargeback, shared-identifier, and fake-watchlist scenarios.
