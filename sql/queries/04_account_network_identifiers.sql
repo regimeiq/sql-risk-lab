@@ -1,5 +1,7 @@
 -- Account network view for stronger shared identifiers.
 -- This is useful for finding rings connected by payment, device, phone, or shipping address.
+-- Orders and chargebacks are pre-aggregated per account before joining, so the
+-- one-to-many joins cannot fan out and inflate SUM(asset_count).
 
 WITH selected_clusters AS (
     SELECT
@@ -25,36 +27,51 @@ members AS (
         member.account_id
     FROM selected_clusters sc
     CROSS JOIN LATERAL UNNEST(sc.account_ids) AS member(account_id)
+),
+member_rollup AS (
+    SELECT
+        account_id,
+        STRING_AGG(DISTINCT identifier_type, ', ' ORDER BY identifier_type) AS shared_identifier_types,
+        MAX(account_count) AS largest_cluster_size
+    FROM members
+    GROUP BY account_id
+),
+order_rollup AS (
+    SELECT
+        account_id,
+        COUNT(*) AS order_count,
+        SUM(asset_count) AS asset_count
+    FROM orders
+    GROUP BY account_id
+),
+chargeback_rollup AS (
+    SELECT
+        account_id,
+        COUNT(*) AS chargeback_count
+    FROM chargebacks
+    GROUP BY account_id
 )
 SELECT
-    m.account_id,
+    mr.account_id,
     a.created_at,
     a.account_type,
     a.signup_country_code,
     a.status,
     a.reseller_id,
-    STRING_AGG(DISTINCT m.identifier_type, ', ' ORDER BY m.identifier_type) AS shared_identifier_types,
-    MAX(m.account_count) AS largest_cluster_size,
-    COUNT(DISTINCT o.order_id) AS order_count,
-    COALESCE(SUM(o.asset_count), 0) AS asset_count,
-    COUNT(DISTINCT cb.chargeback_id) AS chargeback_count
-FROM members m
+    mr.shared_identifier_types,
+    mr.largest_cluster_size,
+    COALESCE(oroll.order_count, 0) AS order_count,
+    COALESCE(oroll.asset_count, 0) AS asset_count,
+    COALESCE(cb.chargeback_count, 0) AS chargeback_count
+FROM member_rollup mr
 JOIN accounts a
-  ON a.account_id = m.account_id
-LEFT JOIN orders o
-  ON o.account_id = a.account_id
-LEFT JOIN chargebacks cb
-  ON cb.account_id = a.account_id
-GROUP BY
-    m.account_id,
-    a.created_at,
-    a.account_type,
-    a.signup_country_code,
-    a.status,
-    a.reseller_id
+  ON a.account_id = mr.account_id
+LEFT JOIN order_rollup oroll
+  ON oroll.account_id = mr.account_id
+LEFT JOIN chargeback_rollup cb
+  ON cb.account_id = mr.account_id
 ORDER BY
     largest_cluster_size DESC,
     chargeback_count DESC,
     asset_count DESC,
-    m.account_id;
-
+    mr.account_id;
