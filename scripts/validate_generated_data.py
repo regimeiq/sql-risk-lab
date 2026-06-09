@@ -121,6 +121,18 @@ def main() -> int:
     if len(ordered_assets) != len(set(ordered_assets)):
         failures.append("order_items.asset_id: duplicate asset order lines")
 
+    unlinked_reports = [
+        row["report_id"]
+        for row in tables["abuse_reports"]
+        if not row.get("account_id") and not row.get("asset_id")
+    ]
+    if unlinked_reports:
+        failures.append(
+            "abuse_reports: "
+            f"{len(unlinked_reports)} rows with neither account_id nor asset_id "
+            f"(schema CHECK violation), first={unlinked_reports[:5]}"
+        )
+
     if failures:
         print("Validation failed:")
         for failure in failures:

@@ -597,11 +597,17 @@ def generate_abuse_reports(
             country = latest_activation["activation_country_code"]
 
         for i in range(report_count):
+            report_account_id = account_id if rng.random() < 0.85 else ""
+            report_asset_id = asset["asset_id"] if rng.random() < 0.9 else ""
+            if not report_account_id and not report_asset_id:
+                # The abuse_reports CHECK constraint requires account_id or asset_id.
+                # Restore the asset link post-hoc so the RNG draw sequence is unchanged.
+                report_asset_id = asset["asset_id"]
             rows.append(
                 {
                     "report_id": f"RPT-{counter:08d}",
-                    "account_id": account_id if rng.random() < 0.85 else "",
-                    "asset_id": asset["asset_id"] if rng.random() < 0.9 else "",
+                    "account_id": report_account_id,
+                    "asset_id": report_asset_id,
                     "report_ts": fmt_ts(base_ts + dt.timedelta(hours=i * rng.randint(3, 18))),
                     "report_type": weighted_choice(
                         rng,
