@@ -160,7 +160,8 @@ chargeback_summary AS (
     SELECT
         oi.asset_id,
         COUNT(cb.chargeback_id) AS asset_chargeback_count,
-        SUM(cb.amount_usd) AS asset_chargeback_amount
+        -- Order-level chargeback total; every asset on the order carries the full amount.
+        SUM(cb.amount_usd) AS order_chargeback_amount
     FROM order_items oi
     JOIN chargebacks cb
       ON cb.order_id = oi.order_id
@@ -183,7 +184,7 @@ SELECT
     COALESCE(reports.max_asset_abuse_severity, 0) AS max_asset_abuse_severity,
     reports.latest_asset_report_ts,
     COALESCE(cb.asset_chargeback_count, 0) AS asset_chargeback_count,
-    COALESCE(cb.asset_chargeback_amount, 0) AS asset_chargeback_amount,
+    COALESCE(cb.order_chargeback_amount, 0) AS order_chargeback_amount,
     (tl.latest_activation_country_code IS NOT NULL AND tl.shipping_country_code <> tl.latest_activation_country_code)
         AS shipped_to_activation_mismatch,
     COALESCE(acts.any_restricted_activation, FALSE) AS restricted_activation,
