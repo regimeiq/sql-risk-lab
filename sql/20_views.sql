@@ -292,7 +292,9 @@ watchlist_rollup AS (
          OR (w.entity_type = 'shipping_address_fingerprint' AND w.entity_value = a.shipping_address_fingerprint)
          OR (w.entity_type = 'phone_fingerprint' AND w.entity_value = a.phone_fingerprint)
          )
-     AND w.active_to IS NULL
+     -- Watchlist entries in force on the lab's 2026-06-01 as-of date.
+     AND w.active_from <= DATE '2026-06-01'
+     AND (w.active_to IS NULL OR w.active_to >= DATE '2026-06-01')
     GROUP BY a.account_id
 )
 SELECT
