@@ -33,8 +33,8 @@ Current case-study metrics:
 - `3,095` sellers.
 - `8,349` medium-plus queued orders.
 - `18` critical queued orders.
-- `14` high-priority sellers.
-- `266` medium-priority sellers.
+- `818` sellers with at least 20 orders (the seller-rollup reporting floor).
+- `1` high-priority seller and `39` medium-priority sellers above that floor.
 
 Key files:
 

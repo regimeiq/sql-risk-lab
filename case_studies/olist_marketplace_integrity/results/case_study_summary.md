@@ -33,8 +33,9 @@ These outputs use public marketplace data to demonstrate SQL-based review priori
 | queued_orders_very_late_delivery | 2730 |
 | queued_orders_high_installments | 1133 |
 | sellers_total | 3095 |
-| sellers_high_priority | 14 |
-| sellers_medium_priority | 266 |
+| sellers_with_20plus_orders | 818 |
+| sellers_high_priority | 1 |
+| sellers_medium_priority | 39 |
 
 
 ## Top Order Review Queue

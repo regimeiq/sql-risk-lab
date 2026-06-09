@@ -18,7 +18,11 @@ SELECT 'queued_orders_high_installments', COUNT(*) FROM v_order_integrity_queue 
 UNION ALL
 SELECT 'sellers_total', COUNT(*) FROM v_seller_integrity_rollup
 UNION ALL
-SELECT 'sellers_high_priority', COUNT(*) FROM v_seller_integrity_rollup WHERE seller_priority_band = 'High'
+-- Seller band metrics apply the same order_count >= 20 reporting floor as
+-- 03_seller_integrity_rollup.sql, so these counts match the published rollup.
+SELECT 'sellers_with_20plus_orders', COUNT(*) FROM v_seller_integrity_rollup WHERE order_count >= 20
 UNION ALL
-SELECT 'sellers_medium_priority', COUNT(*) FROM v_seller_integrity_rollup WHERE seller_priority_band = 'Medium';
+SELECT 'sellers_high_priority', COUNT(*) FROM v_seller_integrity_rollup WHERE order_count >= 20 AND seller_priority_band = 'High'
+UNION ALL
+SELECT 'sellers_medium_priority', COUNT(*) FROM v_seller_integrity_rollup WHERE order_count >= 20 AND seller_priority_band = 'Medium';
 
