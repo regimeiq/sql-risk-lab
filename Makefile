@@ -2,7 +2,7 @@ DB ?= sql_risk_lab
 PSQL ?= psql
 PYTHON ?= python3
 
-.PHONY: data validate reset load indexes views queue rebuild run-query olist-download olist-run clean
+.PHONY: data validate reset load rebuild run-query olist-download olist-run clean distclean
 
 data:
 	$(PYTHON) scripts/generate_synthetic_data.py --out-dir data/generated --seed 42
@@ -30,5 +30,13 @@ olist-download:
 olist-run:
 	$(PYTHON) case_studies/olist_marketplace_integrity/scripts/run_olist_case_study.py --rebuild
 
+# Remove untracked local artifacts only; the synthetic CSVs under
+# data/generated/ are git-tracked and stay in place.
 clean:
+	rm -f case_studies/olist_marketplace_integrity/data/olist_marketplace.sqlite
+
+# Also remove regenerable data: the tracked synthetic CSVs (rebuild with
+# `make data`) and downloaded Olist raw CSVs (`make olist-download`).
+distclean: clean
 	rm -f data/generated/*.csv
+	rm -f case_studies/olist_marketplace_integrity/data/raw/*.csv
