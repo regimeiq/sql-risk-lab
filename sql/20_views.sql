@@ -70,7 +70,9 @@ JOIN orders windowed
   ON windowed.account_id = anchor.account_id
  AND windowed.order_ts >= anchor.order_ts
  AND windowed.order_ts < anchor.order_ts + INTERVAL '24 hours'
-GROUP BY anchor.account_id, anchor.order_ts
+-- Group by the anchor order's primary key so two orders sharing an exact
+-- order_ts cannot merge into one window and double-count the SUMs.
+GROUP BY anchor.order_id, anchor.account_id, anchor.order_ts
 HAVING COUNT(DISTINCT windowed.order_id) >= 3
     OR SUM(windowed.asset_count) >= 8;
 
